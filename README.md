@@ -1,11 +1,5 @@
 # ☕ Davi Alcanfôr 
 
-**Aspiring Software Developer | High School Student at GerminareTECH**
-
-I am a 15-year-old Brazilian beginner programmer, currently attending high school at GerminareTECH.
-
----
-
 ### 💻 Tech Stack
 
 <img 
