@@ -3,8 +3,6 @@
 
 - 🔭 I’m currently working at **Picpay**
 
-- 🌱 I’m currently learning **Machine Learning**
-
 - 📫 How to reach me **alcanfordavi@gmail.com**
 
 <h3 align="left">Connect with me:</h3>
