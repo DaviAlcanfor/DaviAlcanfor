@@ -1,5 +1,4 @@
 # 💫 About Me:
-💼 Currently working at PicPay
 
 🐍 Python Developer | Automation | Machine Learning
 
