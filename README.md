@@ -4,7 +4,7 @@
 
 # 📚 Learning
 
-[![Learning](https://skillicons.dev/icons?i=react,js,ts)](https://skillicons.dev)
+[![Learning](https://skillicons.dev/icons?i=react,js,ts,lua,kotlin)](https://skillicons.dev)
 
 
 # 📊 GitHub Stats:
