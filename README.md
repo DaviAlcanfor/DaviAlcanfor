@@ -1,7 +1,7 @@
 <!-- Header -->
 <div align="center">
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1000&color=00C9FF&center=true&vCenter=true&width=600&lines=Hey+there!+I'm+Davi+%F0%9F%91%8B;Data+Science+%26+ML+Student+%F0%9F%A4%96;Making+sense+of+the+world+with+data+%F0%9F%8C%8D;Always+learning%2C+always+building+%F0%9F%9A%80)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1000&color=00C9FF&center=true&vCenter=true&width=600&lines=Hey+there!+I'm+Davi+%F0%9F%91%8B;Data+Science+%26+ML+Enthusiast+%F0%9F%A4%96;Making+sense+of+the+world+with+data+%F0%9F%8C%8D;Always+learning%2C+always+building+%F0%9F%9A%80)](https://git.io/typing-svg)
 
 ### 👨‍💻 About Me
 
