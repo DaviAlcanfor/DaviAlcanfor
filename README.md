@@ -16,7 +16,7 @@ Currently deepening my knowledge in ML, data visualization, and modern web techn
 <!-- Tech Stack -->
 ### 🛠️ Tech Stack & Tools
 
-[![My Skills](https://skillicons.dev/icons?i=python,java,react,ts,js,html,css,mongodb,postgresql,git)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=python,r,java,react,ts,js,html,css,mongodb,postgresql,git,docker)](https://skillicons.dev)
 
 ### 📦 Libraries & Interests
 
