@@ -28,7 +28,7 @@ Currently deepening my knowledge in ML, data visualization, and modern web techn
 
 ### 🧠 Currently Learning
 
-[![My Skills](https://skillicons.dev/icons?i=tensorflow,pytorch,lua)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=tensorflow,pytorch,lua,ruby)](https://skillicons.dev)
 
 
 ---
