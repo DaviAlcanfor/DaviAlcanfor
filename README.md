@@ -1,7 +1,4 @@
 <!-- Header -->
-<div align="center">
-
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1000&color=00C9FF&center=true&vCenter=true&width=700&lines=Hey%2C+I'm+Davi+%F0%9F%91%8B;Data+Analyst+%40+PicPay;Prophet+%2B+LightGBM+%7C+Time+Series+%7C+Python;Author+of+HybridTS+%E2%80%94+open+source+on+PyPI)](https://git.io/typing-svg)
 
 </div>
 
