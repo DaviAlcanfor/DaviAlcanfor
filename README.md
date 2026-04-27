@@ -1,53 +1,71 @@
 <!-- Header -->
 <div align="center">
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1000&color=00C9FF&center=true&vCenter=true&width=600&lines=Hey+there!+I'm+Davi+%F0%9F%91%8B;Data+Science+%26+ML+Enthusiast+%F0%9F%A4%96;Making+sense+of+the+world+with+data+%F0%9F%8C%8D;Always+learning%2C+always+building+%F0%9F%9A%80)](https://git.io/typing-svg)
-
-### 👨‍💻 About Me
-
-I'm **Davi**, a passionate **Data Science & Machine Learning student** from 🇧🇷 **Brazil**.  
-I love exploring data, building models, and turning numbers into meaningful stories.  
-Currently deepening my knowledge in ML, data visualization, and modern web technologies.
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1000&color=00C9FF&center=true&vCenter=true&width=700&lines=Hey%2C+I'm+Davi+%F0%9F%91%8B;Data+Analyst+%40+PicPay;Prophet+%2B+LightGBM+%7C+Time+Series+%7C+Python;Author+of+HybridTS+%E2%80%94+open+source+on+PyPI)](https://git.io/typing-svg)
 
 </div>
 
 ---
 
-<!-- Tech Stack -->
-### 🛠️ Tech Stack & Tools
+### 👨‍💻 About Me
 
-[![My Skills](https://skillicons.dev/icons?i=python,r,java,react,ts,js,html,css,mongodb,postgresql,git,docker)](https://skillicons.dev)
+I'm Davi, a Data Analyst from 🇧🇷 Brazil working at PicPay, where I handle BI reporting, process automation, and time series forecasting with hybrid ML models. Outside of data, I also build full-stack projects — from REST APIs to frontend interfaces.
 
-### 📦 Libraries & Interests
-
-![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
-![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
-![Time Series](https://img.shields.io/badge/Time%20Series-Forecasting-blueviolet?style=for-the-badge)
-![LangChain](https://img.shields.io/badge/LangChain-000000?style=for-the-badge&logoColor=white)
-![Apache Spark](https://img.shields.io/badge/PySpark-E25A1C?style=for-the-badge&logo=apachespark&logoColor=white)
-
-### 🧠 Currently Learning
-
-[![My Skills](https://skillicons.dev/icons?i=tensorflow,pytorch,lua,ruby)](https://skillicons.dev)
-
+I recently published **[HybridTS](https://pypi.org/project/hybridts/)** — an open-source Python library for hybrid time series forecasting, combining Prophet and LightGBM.
 
 ---
 
-<!-- Social Links -->
-### 🌐 Find Me Around the Web
+### 🛠️ Tech Stack
+
+**Languages**
+
+[![My Skills](https://skillicons.dev/icons?i=python,java,js,ts,r,ruby,lua)](https://skillicons.dev)
+
+**Backend**
+
+[![My Skills](https://skillicons.dev/icons?i=fastapi,flask,spring,rails)](https://skillicons.dev)
+
+**Frontend**
+
+[![My Skills](https://skillicons.dev/icons?i=react,html,css)](https://skillicons.dev)
+
+**Databases**
+
+[![My Skills](https://skillicons.dev/icons?i=postgres,mongodb,sqlite)](https://skillicons.dev)
+
+`SQL Server` · `Neo4j`
+
+**ML / Data Science**
+
+[![My Skills](https://skillicons.dev/icons?i=tensorflow,pytorch)](https://skillicons.dev)
+
+`Prophet` · `LightGBM` · `Scikit-Learn` · `Pandas` · `NumPy` · `PySpark` · `LangChain` · `Keras` · `Streamlit` · `forecast (R)`
+
+**Web Scraping & Automation**
+
+`Selenium` · `BeautifulSoup`
+
+**DevOps & Tools**
+
+[![My Skills](https://skillicons.dev/icons?i=docker,git)](https://skillicons.dev)
+
+`GSAP`
+
+---
+
+### 🌐 Find Me
 
 <div align="center">
 
-[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/zxhdavi/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/davi-franco-b564a1386/)
 [![Medium](https://img.shields.io/badge/Medium-000000?style=for-the-badge&logo=medium&logoColor=white)](https://medium.com/@alcanfordavi)
+[![PyPI](https://img.shields.io/badge/PyPI-HybridTS-3775A9?style=for-the-badge&logo=pypi&logoColor=white)](https://pypi.org/project/hybridts/)
 [![Stack Overflow](https://img.shields.io/badge/Stack_Overflow-F58025?style=for-the-badge&logo=stackoverflow&logoColor=white)](https://stackoverflow.com/users/31972552/davi-alcanfor)
 
 </div>
 
 ---
 
-<!-- Snake Animation -->
 ### 🐍 My Contributions
 
 <div align="center">
