@@ -1,14 +1,10 @@
-<!-- Header -->
 
-</div>
-
----
 
 ### 👨‍💻 About Me
 
-I'm Davi, a Data Analyst from 🇧🇷 Brazil working at PicPay, where I handle BI reporting, process automation, and time series forecasting with hybrid ML models. Outside of data, I also build full-stack projects — from REST APIs to frontend interfaces.
+I'm **Davi**, a Data Analyst from 🇧🇷 Brazil working at **PicPay**, where I build hybrid time series forecasting models (Prophet + LightGBM) running at ~100M daily transaction scale.
 
-I recently published **[HybridTS](https://pypi.org/project/hybridts/)** — an open-source Python library for hybrid time series forecasting, combining Prophet and LightGBM.
+I recently published **[HybridTS](https://pypi.org/project/hybridts/)** — an open-source Python library wrapping that production architecture into a reusable, extensible package.
 
 ---
 
@@ -30,23 +26,15 @@ I recently published **[HybridTS](https://pypi.org/project/hybridts/)** — an o
 
 [![My Skills](https://skillicons.dev/icons?i=postgres,mongodb,sqlite)](https://skillicons.dev)
 
-`SQL Server` · `Neo4j`
-
 **ML / Data Science**
 
 [![My Skills](https://skillicons.dev/icons?i=tensorflow,pytorch)](https://skillicons.dev)
 
-`Prophet` · `LightGBM` · `Scikit-Learn` · `Pandas` · `NumPy` · `PySpark` · `LangChain` · `Keras` · `Streamlit` · `forecast (R)`
-
-**Web Scraping & Automation**
-
-`Selenium` · `BeautifulSoup`
 
 **DevOps & Tools**
 
 [![My Skills](https://skillicons.dev/icons?i=docker,git)](https://skillicons.dev)
 
-`GSAP`
 
 ---
 
