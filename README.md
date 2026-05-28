@@ -12,7 +12,7 @@ I recently published **[HybridTS](https://pypi.org/project/hybridts/)** — an o
 
 **Languages**
 
-[![My Skills](https://skillicons.dev/icons?i=python,java,js,ts,r,ruby)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=python,java,kotlin,js,ts,r,ruby)](https://skillicons.dev)
 
 **Backend**
 
