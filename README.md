@@ -4,15 +4,13 @@
 
 I'm Davi, a Data Analyst from 🇧🇷 Brazil working at PicPay, where I handle BI reporting, process automation, and time series forecasting with hybrid ML models. Outside of data, I also build full-stack projects — from REST APIs to frontend interfaces.
 
-I recently published **[HybridTS](https://pypi.org/project/hybridts/)** — an open-source Python library for hybrid time series forecasting, combining Prophet and LightGBM.
-
 ---
 
 ### 🛠️ Tech Stack
 
 **Languages**
 
-[![My Skills](https://skillicons.dev/icons?i=python,java,kotlin,js,ts,r,ruby)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=python,java,js,ts,r,ruby,kotlin)](https://skillicons.dev)
 
 **Backend**
 
