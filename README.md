@@ -29,11 +29,6 @@ I'm Davi, a Data Analyst from 🇧🇷 Brazil working at PicPay, where I handle 
 [![My Skills](https://skillicons.dev/icons?i=tensorflow,pytorch)](https://skillicons.dev)
 
 
-**DevOps & Tools**
-
-[![My Skills](https://skillicons.dev/icons?i=docker,git)](https://skillicons.dev)
-
-
 ---
 
 ### 🌐 Find Me
