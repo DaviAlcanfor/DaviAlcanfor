@@ -10,7 +10,7 @@ I'm Davi, a Data Analyst from 🇧🇷 Brazil working at PicPay, where I handle 
 
 **Languages**
 
-[![My Skills](https://skillicons.dev/icons?i=python,java,js,ts,r,ruby,kotlin)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=python,java,kotlin,js,ts,r,ruby)](https://skillicons.dev)
 
 **Backend**
 
