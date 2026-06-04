@@ -22,7 +22,7 @@ I'm Davi, a Data Analyst from 🇧🇷 Brazil working at PicPay, where I handle 
 
 **Databases**
 
-[![My Skills](https://skillicons.dev/icons?i=postgres,mongodb,sqlite)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=postgres,mongodb,sqlite,mysql,redis)](https://skillicons.dev)
 
 **ML / Data Science**
 
