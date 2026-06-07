@@ -2,7 +2,7 @@
 
 ![](./.github/assets/profile_card_green.svg)
 
-![](./.github/assets/stack_header.svg)
+![](./.github/assets/stack_header_preview.svg)
 
 [![My Skills](https://skillicons.dev/icons?i=python,java,kotlin,js,ts,rust,r&theme=dark)](https://skillicons.dev)
 [![My Skills](https://skillicons.dev/icons?i=fastapi,spring,flask,react,ubuntu&theme=dark)](https://skillicons.dev)
