@@ -2,7 +2,7 @@
 
 ![](./.github/assets/profile_card_green.svg)
 
-![](./.github/assets/stack_headers_contrast.sv)
+![](./.github/assets/stack_headers_contrast.svg)
 
 ![](./.github/assets/links_card_green.svg)
 
