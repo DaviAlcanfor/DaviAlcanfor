@@ -1,0 +1,22 @@
+<svg width="100%" viewBox="0 0 680 142" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>whoami terminal block</title>
+  <defs>
+    <style>
+      .prompt { fill: #e05252; font-family: 'Courier New', Courier, monospace; font-size: 13px; }
+      .cmd    { fill: #e8e8e8; font-family: 'Courier New', Courier, monospace; font-size: 13px; }
+      .key    { fill: #7ec8a4; font-family: 'Courier New', Courier, monospace; font-size: 12px; }
+      .val    { fill: #c8c8c8; font-family: 'Courier New', Courier, monospace; font-size: 12px; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="680" height="28" rx="4" fill="#1e1e1e"/>
+  <text x="12" y="18" class="prompt">┌─[davi@picpay]─[~]─$</text>
+  <text x="195" y="18" class="cmd"> whoami</text>
+
+  <rect x="0" y="28" width="680" height="94" rx="0" fill="#252526"/>
+  <rect x="0" y="28" width="3" height="94" fill="#e05252"/>
+  <text x="20" y="50"  class="key">&gt; Role     </text><text x="115" y="50"  class="val">: Data Analyst Intern @ PicPay</text>
+  <text x="20" y="68"  class="key">&gt; Focus    </text><text x="115" y="68"  class="val">: Hierarchical Forecasting · BI Automation</text>
+  <text x="20" y="86"  class="key">&gt; Location </text><text x="115" y="86"  class="val">: São Paulo, Brazil</text>
+  <text x="20" y="104" class="key">&gt; Status   </text><text x="115" y="104" class="val">: [ ACTIVE ] — Building, Forecasting, Shipping</text>
+</svg>
