@@ -28,13 +28,15 @@ I'm Davi, a Data Analyst from Brazil working at PicPay, where I handle BI report
 ## $ cat stack.txt
 
 ```
-[ Time Series ]    Prophet · LightGBM · MinTrace · HierarchicalForecast
-[ ML ]             LightGBM · Optuna · Walk-forward Validation · K-Means
-[ Data ]           pandas · NumPy · PySpark · MLflow
-[ Database ]       PostgreSQL · MongoDB · MySQL · Redis
-[ Backend ]        FastAPI · Spring Boot · Flask
-[ Languages ]      Python · SQL · Rust · Go · Java · JavaScript
-[ Tools ]          Git · Docker · Linux · Vim
+[ Time Series ]     Prophet · LightGBM · MinTrace · HierarchicalForecast
+[ ML ]              LightGBM · Optuna · Walk-forward Validation · K-Means
+[ AI Engineering ]  LangChain · LangGraph · RAG · Multi-agent
+[ Data ]            pandas · NumPy · PySpark · MLflow
+[ Database ]        PostgreSQL · MongoDB · MySQL · Redis
+[ Backend ]         FastAPI · Spring Boot · Flask
+[ Security ]        C2 Development · Reverse Shell · Port Scanning
+[ Languages ]       Python · SQL · Rust · Go · Java · JavaScript
+[ Tools ]           Git · Docker · Linux · Vim
 ```
 
 ---
