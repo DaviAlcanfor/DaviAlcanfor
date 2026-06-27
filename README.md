@@ -61,8 +61,6 @@ I'm Davi, a Data Analyst from Brazil working at PicPay, where I handle BI report
 
 ## $ git log --stat
 
-<div align="center">
-
 ![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=DaviAlcanfor&layout=compact&theme=dark&hide_border=true&bg_color=0d1117&title_color=c9d1d9&text_color=8b949e)
 
 </div>
