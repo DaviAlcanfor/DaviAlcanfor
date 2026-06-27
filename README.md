@@ -1,4 +1,3 @@
-
 Data Analyst · Time Series · ML
 
 [![Medium](https://img.shields.io/badge/Medium-articles-12100E?style=flat-square&logo=medium&logoColor=white)](https://medium.com/@your-handle)
@@ -20,7 +19,7 @@ Data Analyst · Time Series · ML
 > Status     : [ ACTIVE ] — Building, Forecasting, Shipping
 ```
 
-Data analyst with a real focus on time series and applied machine learning. At PicPay, I build hierarchical forecasting systems using Prophet + LightGBM at ~100M daily transactions scale. I publish on PyPI, write on Medium, and have genuine curiosity about systems — currently exploring Rust and security.
+I'm Davi, a Data Analyst from Brazil working at PicPay, where I handle BI reporting, process automation, and time series forecasting — building hierarchical models with a hybrid Prophet + LightGBM architecture. Outside of data, I also build full-stack projects, publish open-source libraries on PyPI, write on Medium, and am currently diving into Rust and security.
 
 ---
 
@@ -57,6 +56,8 @@ Data analyst with a real focus on time series and applied machine learning. At P
 ---
 
 ## $ git log --stat
+
+<div align="center">
 
 ![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=DaviAlcanfor&layout=compact&theme=dark&hide_border=true&bg_color=0d1117&title_color=c9d1d9&text_color=8b949e)
 
