@@ -41,10 +41,14 @@ I'm Davi, a Data Analyst from Brazil working at PicPay, where I handle BI report
 
 ## $ ls projects/
 
-| Project | Description | Stack |
-|---------|-------------|-------|
-| [HybridTS](https://pypi.org/project/hybridts/) | Hybrid forecasting library — Prophet + LightGBM | Python · PyPI |
-| [nb2ob](https://github.com/DaviAlcanfor/nb2ob) | Multi-agent pipeline syncing NotebookLM → Obsidian | LangChain · LangGraph |
+| Project | Category | Stack | Status |
+|---------|----------|-------|--------|
+| [HybridTS](https://pypi.org/project/hybridts/) | Open Source · PyPI | Python · Prophet · LightGBM | Published |
+| [nb2ob](https://github.com/DaviAlcanfor/nb2ob) | Open Source | Python · LangGraph · LangChain | Completed |
+| [RailForge](https://github.com/DaviAlcanfor/railforge) | Fullstack | FastAPI · React · TypeScript · Docker | Completed |
+| [Champions Predictor](https://github.com/DaviAlcanfor/champions-prediction-vlrdevapi) | ML | Python · XGBoost · VLR API | In Progress |
+| [port-scanner](https://github.com/DaviAlcanfor/port-scanner) | Security | Rust | Completed |
+| Hybrid Hierarchical Forecasting | Corporate | Python · Prophet · LightGBM · SQL | Active |
 
 ---
 
