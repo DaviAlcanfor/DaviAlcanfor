@@ -2,10 +2,10 @@
 
 Data Analyst · Time Series · ML
 
-[![Medium](https://img.shields.io/badge/Medium-articles-12100E?style=flat-square&logo=medium&logoColor=white)](https://medium.com/@your-handle)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-profile-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/your-handle)
-[![Instagram](https://img.shields.io/badge/Instagram-@handle-E4405F?style=flat-square&logo=instagram&logoColor=white)](https://instagram.com/your-handle)
-[![Email](https://img.shields.io/badge/Email-contact-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:your@email.com)
+[![Medium](https://img.shields.io/badge/Medium-articles-12100E?style=flat-square&logo=medium&logoColor=white)](https://medium.com/@alcanfordavi)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-profile-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/davi-franco-b564a1386)
+[![Instagram](https://img.shields.io/badge/Instagram-@zxhdavi-E4405F?style=flat-square&logo=instagram&logoColor=white)](https://instagram.com/zxhdavi)
+[![Email](https://img.shields.io/badge/Email-contact-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:alcanfordavi@gmail.com)
 [![PyPI](https://img.shields.io/badge/PyPI-HybridTS-3775A9?style=flat-square&logo=pypi&logoColor=white)](https://pypi.org/project/hybridts/)
 
 </div>
