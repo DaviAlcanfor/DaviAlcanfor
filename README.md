@@ -1,3 +1,7 @@
+<div align="center">
+
+<img src=".github/assets/gifs/ichigo.gif" width="500"/>
+
 Data Analyst · Time Series · ML
 
 [![Medium](https://img.shields.io/badge/Medium-articles-12100E?style=flat-square&logo=medium&logoColor=white)](https://medium.com/@your-handle)
