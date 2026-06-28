@@ -20,7 +20,6 @@ Data Analyst · Time Series · ML
 > Role       : Data Analyst Intern @ PicPay
 > Focus      : Time Series Forecasting · BI Automation · ML
 > Location   : São Paulo, Brazil
-> Status     : [ ACTIVE ] — Building, Forecasting, Shipping
 ```
 
 I'm Davi, a Data Analyst from Brazil working at PicPay, where I handle BI reporting, process automation, and time series forecasting — building hierarchical models with a hybrid Prophet + LightGBM architecture. Outside of data, I also build full-stack projects, publish open-source libraries on PyPI, write on Medium, and am currently diving into Rust and security.
