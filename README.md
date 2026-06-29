@@ -10,6 +10,8 @@ Data Analyst · Time Series · ML · Security
 [![Email](https://img.shields.io/badge/Email-contact-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:alcanfordavi@gmail.com)
 [![PyPI](https://img.shields.io/badge/PyPI-HybridTS-3775A9?style=flat-square&logo=pypi&logoColor=white)](https://pypi.org/project/hybridts/)
 
+<img src=".github/assets/gifs/output3.gif" alt="stack" />
+
 </div>
 
 ---
@@ -26,6 +28,20 @@ I'm Davi, a Data Analyst from Brazil working at PicPay, building hierarchical fo
 
 ---
 
+## $ cat stack.txt
+
+```
+[ Languages ]    Python · Rust · Go · Java · JavaScript · Lua
+[ Data & ML ]    Prophet · LightGBM · PySpark · pandas · NumPy · MLflow · Optuna
+[ AI ]           LangChain · LangGraph · RAG · Multi-agent
+[ Backend ]      FastAPI · Flask · Spring Boot
+[ Database ]     PostgreSQL · MongoDB · Redis · MySQL
+[ Security ]     Network internals · Port scanning
+[ Tools ]        Linux · Vim · Git · Docker
+```
+
+---
+
 ## $ cat learning.txt
 
 ```
@@ -35,24 +51,8 @@ I'm Davi, a Data Analyst from Brazil working at PicPay, building hierarchical fo
 
 ---
 
-## $ cat stack.txt
+<div align="center">
 
-**Languages**
+*"Curiosity without execution is just well-justified procrastination."*
 
-[![Languages](https://skillicons.dev/icons?i=python,js,go,java,rust,&theme=dark)](https://skillicons.dev)
-
-**Data & ML**
-
-[![Data](https://skillicons.dev/icons?i=pytorch,tensorflow,sklearn&theme=dark)](https://skillicons.dev)
-
-**Backend**
-
-[![Backend](https://skillicons.dev/icons?i=fastapi,flask,spring&theme=dark)](https://skillicons.dev)
-
-**Database**
-
-[![Database](https://skillicons.dev/icons?i=postgres,mongodb,redis,mysql&theme=dark)](https://skillicons.dev)
-
-**Tools**
-
-[![Tools](https://skillicons.dev/icons?i=linux,vim,git,github,docker&theme=dark)](https://skillicons.dev)
+</div>
