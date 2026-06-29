@@ -48,11 +48,3 @@ I'm Davi, a Data Analyst from Brazil working at PicPay, building hierarchical fo
 [ Currently ]    Rust · Cybersecurity · Network internals
 [ Reading ]      Systems programming · Offensive tooling fundamentals
 ```
-
----
-
-<div align="center">
-
-*"Curiosity without execution is just well-justified procrastination."*
-
-</div>
