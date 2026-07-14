@@ -2,7 +2,7 @@
 
 # alcanfor
 
-Fullstack Dev · Data Scientist · Security Enthusiast
+Data Analyst · Fullstack Dev · Security Enthusiast
 
 [![Medium](https://img.shields.io/badge/Medium-articles-12100E?style=flat-square&logo=medium&logoColor=white)](https://medium.com/@alcanfordavi)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-profile-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/davi-franco-b564a1386)
