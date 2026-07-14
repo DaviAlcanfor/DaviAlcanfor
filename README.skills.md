@@ -28,7 +28,7 @@ I'm Davi, a fullstack developer from Brazil working at PicPay, where I build hie
 **Backend**
 
 ![](https://skillicons.dev/icons?i=spring,fastapi,dotnet,rails&theme=dark)
-<img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/GinGonic-Dark.svg" width="48" height="48">
+<img src="https://cdn.jsdelivr.net/gh/DaviAlcanfor/skill-icons@main/icons/GinGonic-Dark.svg" width="48" height="48">
 
 **Frontend**
 
