@@ -14,7 +14,7 @@ Data Analyst · Fullstack Dev · Security Enthusiast
 
 ---
 
-Sou Davi, desenvolvedor fullstack brasileiro trabalhando na PicPay, onde construo modelos de forecasting hierárquico com uma arquitetura híbrida Prophet + LightGBM. Atuo em toda a stack, do backend às pipelines de dados, e fora do trabalho publico bibliotecas open-source, escrevo no Medium e estou me aprofundando em segurança ofensiva, estudando desenvolvimento de malware, internals do Windows, redes e segurança web, além de explorar Rust, Go e C#.
+I'm Davi, a Brazilian fullstack developer working at PicPay, where I build hierarchical forecasting models using a hybrid Prophet + LightGBM architecture. I work across the whole stack, from backend to data pipelines, and outside of work I publish open-source libraries, write on Medium, and I'm going deeper into offensive security: studying malware development, Windows internals, networking, and web security, while also exploring Rust, Go, and C#.
 
 ---
 
