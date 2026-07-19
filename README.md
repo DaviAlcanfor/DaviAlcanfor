@@ -27,7 +27,7 @@ I'm Davi, a Brazilian fullstack developer working at PicPay, where I build hiera
 
 **Backend**
 
-![](https://skillicons.dev/icons?i=spring,fastapi,dotnet,rails&theme=dark)
+![](https://skillicons.dev/icons?i=spring,fastapi,flask,dotnet,rails&theme=dark)
 <img src="https://cdn.jsdelivr.net/gh/DaviAlcanfor/skill-icons@main/icons/GinGonic-Dark.svg" width="48" height="48">
 
 **Frontend**
