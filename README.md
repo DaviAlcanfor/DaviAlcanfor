@@ -22,7 +22,7 @@ I'm Davi, a Brazilian fullstack developer working at PicPay, where I build hiera
 
 **Languages**
 
-![](https://skillicons.dev/icons?i=python,rust,java,js,ts&theme=dark)
+![](https://skillicons.dev/icons?i=python,rust,c,java,js,ts&theme=dark)
 <img src="https://cdn.jsdelivr.net/gh/DaviAlcanfor/skill-icons@main/icons/Gopher-Dark.svg" width="48" height="48">
 
 **Backend**
