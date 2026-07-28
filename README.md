@@ -32,7 +32,7 @@ I'm Davi, a Brazilian fullstack developer working at PicPay, where I build hiera
 
 **Frontend**
 
-![](https://skillicons.dev/icons?i=react,tailwind,html,css,tauri&theme=dark)
+![](https://skillicons.dev/icons?i=react,tailwind,html,css&theme=dark)
 
 **Database**
 
