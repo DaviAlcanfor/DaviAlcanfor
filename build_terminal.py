@@ -6,8 +6,8 @@ external fonts in <img>); animation is CSS only. Output is deterministic.
 
     python build_terminal.py
 """
-import math
 import random
+import re
 from html import escape
 from pathlib import Path
 
@@ -35,7 +35,6 @@ TERM = {
     "label": "#777777",
     "dim": "#A39D90",
     "ink": "#D8D2C4",
-    "amber_low": "#4D370C",  # 30% amber over black, for the lowest contribution level
     "amber_dim": "#8C6415",
     "amber": "#FFB627",
     "amber_hi": "#FFD27A",
@@ -233,14 +232,14 @@ def caret(x, y, size=SIZE):
 
 # ── terminal window ──────────────────────────────────────────────────────
 
-def window(name, title, lines, alt, caret_end=True):
+def window(name, title, lines, alt):
     """A projects-terminal window. lines: ("$", command) | [(text, tone), ...] | callable(y, delay).
 
     Commands type themselves once on load (a window-colored cover slides off in steps), then each
     output line fades in, like the site. Reduced motion shows the final state.
     """
     pad, top = 28, 36 + 30
-    h = top + (len(lines) + caret_end - 1) * LH + 24
+    h = top + len(lines) * LH + 24
     body = (f'<rect x=".5" y=".5" width="{PAGE_W - 1}" height="{h - 1}" rx="8" fill="{T["window"]}" '
             f'stroke="{T["border"]}"/>'
             f'<path d="M1 36V9a8 8 0 0 1 8-8h{PAGE_W - 18}a8 8 0 0 1 8 8v27z" fill="{T["bar"]}"/>'
@@ -271,68 +270,60 @@ def window(name, title, lines, alt, caret_end=True):
             body += f'<g class="a" style="animation-delay:{t:.2f}s">{segs(line, pad, y)}</g>'
             t += 0.07
         y += LH
-    if caret_end:
-        body += (f'<g class="a" style="animation-delay:{t + 0.2:.2f}s">{segs([(PROMPT, "amber")], pad, y)}'
-                 f'{caret(pad + (len(PROMPT) + 1) * cw(), y)}</g>')
+    body += (f'<g class="a" style="animation-delay:{t + 0.2:.2f}s">{segs([(PROMPT, "amber")], pad, y)}'
+             f'{caret(pad + (len(PROMPT) + 1) * cw(), y)}</g>')
     svg(name, PAGE_W, h, body, alt, "".join(css))
-
-
-def build_whoami():
-    window("whoami.svg", "davi@github: ~", [
-        ("$", "whoami"),
-        [("Davi Alcanfôr", "amber_hi")],
-        [("ai engineer", "ink"), (" @ ", "muted"), ("PicPay", "ink"), (" · ", "muted"), ("São Paulo, Brazil", "ink")],
-        [],
-        ("$", "cat about.txt"),
-        [("I build AI products end to end: LLM agents, ML & deep learning", "dim")],
-        [("models, and forecasting, obsessing over quality at every step.", "dim")],
-        [("studying at ", "dim"), ("Instituto J&F", "ink")],
-        [("speaks ", "dim"), ("portuguese, english, spanish and french", "ink")],
-    ], "Terminal: whoami prints Davi Alcanfôr, AI engineer at PicPay, São Paulo, Brazil. cat about.txt: "
-       "I build AI products end to end: LLM agents, ML and deep learning models, and forecasting, obsessing "
-       "over quality at every step. Studying at Instituto J&F. Speaks Portuguese, English, Spanish and French.")
 
 
 STACK = [
     ("languages", ["python", "rust", "go"]),
-    ("agents", ["langgraph", "langchain"]),
-    ("forecasting", ["prophet", "lightgbm", "xgboost"]),
-    ("serving", ["fastapi", "docker"]),
-    ("storage", ["postgres", "redis", "qdrant"]),
+    ("ai & ml", ["langgraph", "langchain", "prophet", "lightgbm", "xgboost"]),
+    ("infra", ["fastapi", "docker", "postgres", "redis", "qdrant"]),
 ]
+ICON_DIR = ROOT / "tools" / "icons"  # Simple Icons 16.36.0 (CC0), filled 24x24 marks
+ICON_FILE = {"postgres": "postgresql"}
+# No Simple Icon exists for these, so they get line icons: a forecast trend for Prophet, and a tree
+# for each booster, grown leaf-wise for LightGBM and level-wise for XGBoost, as they grow theirs
+LINE_ICONS = {
+    "prophet": "M2 19l6-7 4 4 9-11M15 5h6v6",
+    "lightgbm": "M12 2v4M12 6L6 11M12 6l6 5M6 11l-3 5M6 11l3 5M3 16l-1.5 6M3 16l1.5 6",
+    "xgboost": "M12 2v4M12 6L6 11M12 6l6 5M6 11l-3 6M6 11l3 6M18 11l-3 6M18 11l3 6",
+}
+TILE_W, TILE_H, TILE_GAP = 124, 70, 10
+
+
+def icon(name, cx, top, size=26):
+    """The tech's mark in amber, centered on cx."""
+    place = f'transform="translate({cx - size / 2:.2f} {top}) scale({size / 24:.4f})"'
+    if name in LINE_ICONS:
+        return (f'<path {place} d="{LINE_ICONS[name]}" fill="none" stroke="{T["amber"]}" stroke-width="2.2" '
+                f'stroke-linecap="round" stroke-linejoin="round"/>')
+    d = re.search(r' d="([^"]+)"', (ICON_DIR / f"{ICON_FILE.get(name, name)}.svg").read_text()).group(1)
+    return f'<path {place} d="{d}" fill="{T["amber"]}"/>'
+
+
+def tiles(items):
+    """A row of tiles, each fading in a beat after the previous one."""
+    def draw(y, delay):
+        top, out = y - 8, ""
+        for k, name in enumerate(items):
+            x = 28 + k * (TILE_W + TILE_GAP)
+            out += (f'<g class="a" style="animation-delay:{delay + k * 0.06:.2f}s">'
+                    f'<rect x="{x + .5}" y="{top + .5}" width="{TILE_W - 1}" height="{TILE_H - 1}" rx="6" '
+                    f'fill="{T["bar"]}" stroke="{T["border"]}"/>'
+                    + icon(name, x + TILE_W / 2, top + 12)
+                    + text(name, MONO, 12, x + TILE_W / 2, top + 58, T["ink"], "middle") + "</g>")
+        return out
+    return draw
 
 
 def build_stack():
-    rows = [("$", "cat stack.toml")]
-    for section, items in STACK:
-        label = f"[{section}]"
-        rows.append([(label, "amber"), (" " * (15 - len(label)), "ink"),
-                     *[p for item in items for p in ((item, "ink"), (" · ", "muted"))][:-1]])
-    window("stack.svg", "davi@github: ~/stack", rows,
-           "Terminal: cat stack.toml. " + ". ".join(f"{s}: {', '.join(i)}" for s, i in STACK) + ".")
-
-
-HEADING_W = 480  # shown at native width, so the name keeps ~14px on phones
-PROJECTS = ["frigus-ai", "assessor-ai", "champions-prediction", "hybridts", "nb2ob", "anubis"]  # site order
-
-
-def build_projects():
-    names, per_row = [f"{p}/" for p in PROJECTS], 2
-    rows = [("$", "ls projects/")]
-    for k in range(0, len(names), per_row):
-        rows.append([(n.ljust(26), "amber") for n in names[k:k + per_row]])
-    rows.append(("$", "cat projects/*/README"))
-    window("projects.svg", "davi@github: ~", rows,
-           "Terminal: ls projects lists " + ", ".join(PROJECTS) + ". Then cat projects/*/README.", caret_end=False)
-    for name in PROJECTS:
-        # "── name ─────" heading, as the site's terminal draws it
-        size = 18
-        x = 2 + 3 * cw(size)
-        body = rect(2, 21, round(2 * cw(size) - 4), 1, T["amber_dim"])
-        body += text(name, MONO_BOLD, size, x, 28, T["amber"])
-        x += len(name) * cw(size) + cw(size)
-        body += rect(round(x), 21, round(HEADING_W - 2 - x), 1, T["border"])
-        svg(f"project-{name}.svg", HEADING_W, 40, body, name)
+    rows = [("$", "ls --icons ~/stack/")]
+    for k, (group, items) in enumerate(STACK):
+        # a tile row is ~3 lines tall: draw it on the first line, then reserve two more
+        rows += [[]] * (k > 0) + [[("# " + group, "muted")], tiles(items), [], []]
+    window("stack.svg", "davi@github: ~/stack", rows + [[]],
+           "Terminal: ls --icons ~/stack. " + ". ".join(f"{g}: {', '.join(i)}" for g, i in STACK) + ".")
 
 
 TRACKS = [  # TRACKS in the site's data/site.ts
@@ -372,15 +363,6 @@ def build_offhours():
         [("a very eclectic playlist :)", "muted")],
     ], "Terminal: ls off-hours lists GeoGuessr, Valorant, Rainbow Six Siege and video editing. "
        "now-playing cycles through a playlist: " + "; ".join(f"{a} by {b}" for a, b in TRACKS) + ".")
-
-
-def build_footer():
-    window("footer.svg", "davi@github: ~", [
-        ("$", "exit"),
-        [("logout", "dim")],
-        [],
-        [("[process completed]", "muted"), ("   ·   ", "faint"), ("alcanfor.vercel.app", "amber")],
-    ], "Terminal: exit, logout, process completed. alcanfor.vercel.app", caret_end=False)
 
 
 MARQUEE = [  # MARQUEE in the site's data/site.ts
@@ -429,22 +411,12 @@ def build_links():
         svg(f"link-{key}.svg", w, h, body, label, bg="black")
 
 
-def build_prompt():
-    """A bare prompt line used as the Activity heading."""
-    body = segs([(PROMPT, "amber"), (" ", "ink"), ("git log --graph --author=davi", "ink")], 2, 24)
-    svg("prompt-activity.svg", PAGE_W, 36, body, "davi@github:~$ git log --graph --author=davi")
-
-
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     build_marquee()
     build_links()
-    build_whoami()
     build_stack()
-    build_projects()
     build_offhours()
-    build_prompt()
-    build_footer()
     build_cover()
     for p in sorted(OUT.iterdir()):
         print(f"{p.name:28} {p.stat().st_size / 1024:8.1f} KB")
