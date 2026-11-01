@@ -5,7 +5,7 @@ truth). Text is converted to paths with fontTools because GitHub renders SVGs
 through <img>, which blocks external fonts. Pixel art is drawn from string
 grids into crisp <rect> runs. Output is deterministic.
 
-    python build_assets.py
+    python tools/build_assets.py
 """
 import sys
 from html import escape
@@ -18,14 +18,15 @@ from fontTools.ttLib import TTFont
 from fontTools.varLib.instancer import instantiateVariableFont
 from PIL import Image, ImageEnhance
 
-ROOT = Path(__file__).parent
-sys.path.insert(0, str(ROOT / "tools"))
+HERE = Path(__file__).parent
+ROOT = HERE.parent
+sys.path.insert(0, str(HERE))
 from cover_procedural import (  # noqa: E402
     FRAME_MS, FRAMES, H, PALETTE as C, W, draw_embers, draw_flames, ember_particles, light_map, to_image,
 )
 from pixelize import crop_to_ratio, quantize_dithered  # noqa: E402
 
-OUT = ROOT / "assets"
+OUT = ROOT / "readmes" / "darksouls" / "assets"
 SOURCE = ROOT / "source"
 FONTS = ROOT / "tools" / "fonts"
 

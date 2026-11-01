@@ -14,16 +14,16 @@ colors:
 typography:
   label: { fontFamily: "Martian Mono 400 (OFL), as paths", fontSize: "13px" }
 components:
-  marquee: { file: "assets/terminal/marquee.svg", height: "40px", width: "100%" }
-  cover:   { file: "assets/terminal/cover.gif", size: "840x300", width: "100%" }
-  link:    { file: "assets/terminal/link-*.svg", height: "40px" }
-  stack:   { file: "assets/terminal/stack.svg", height: "40px", tile: "40x40", icon: "20px" }
+  marquee: { file: "assets/marquee.svg", height: "40px", width: "100%" }
+  cover:   { file: "assets/cover.gif", size: "840x300", width: "100%" }
+  link:    { file: "assets/link-*.svg", height: "40px" }
+  stack:   { file: "assets/stack.svg", height: "40px", tile: "40x40", icon: "20px" }
 ---
 
 # Design system: terminal
 
-`README.md` is the profile. `README.darksouls.md` and `DESIGN.darksouls.md` hold the gothic
-version, kept in reserve. This one follows [alcanfor.vercel.app](https://alcanfor.vercel.app)
+This folder is one of the profile variants in `readmes/`. Make it live with
+`python tools/select_readme.py terminal`. The gothic version is in `readmes/darksouls/`, kept in reserve. This one follows [alcanfor.vercel.app](https://alcanfor.vercel.app)
 (source: `DaviAlcanfor/portfolio`), so the profile and the site read as one thing.
 
 ## Layout
@@ -41,8 +41,8 @@ well on phones.
 
 ## Method
 
-- `python build_terminal.py` regenerates everything in `assets/terminal/`, deterministically.
-  It reuses the path-text primitives from `build_assets.py` (the dark-souls builder).
+- `python tools/build_terminal.py` regenerates everything in `readmes/terminal/assets/`,
+  deterministically. It reuses the path-text primitives from `tools/build_assets.py` (the dark-souls builder).
 - Tokens are copied from the site: `--fg`, `--fg-hi` and `--fg-dim` in `global.css`, and the
   greys of the projects terminal in `Terminal.astro`.
 - Content is copied from `src/data/site.ts`: roles, bio and marquee. The project lines in the
@@ -82,5 +82,5 @@ well on phones.
 Render the SVGs and look at them:
 
 ```bash
-python -c "import resvg_py, pathlib; [pathlib.Path(f'previews/{p.stem}.png').write_bytes(bytes(resvg_py.svg_to_bytes(svg_path=str(p)))) for p in pathlib.Path('assets/terminal').glob('*.svg')]"
+python -c "import resvg_py, pathlib; [pathlib.Path(f'previews/{p.stem}.png').write_bytes(bytes(resvg_py.svg_to_bytes(svg_path=str(p)))) for p in pathlib.Path('readmes/terminal/assets').glob('*.svg')]"
 ```

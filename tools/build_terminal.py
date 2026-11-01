@@ -4,7 +4,7 @@ Amber on black, Martian Mono, terminal metaphors. Colors come from TERM below, c
 the site's global.css and Terminal.astro. Text in SVGs is converted to paths (GitHub blocks
 external fonts in <img>); animation is CSS only. Output is deterministic.
 
-    python build_terminal.py
+    python tools/build_terminal.py
 """
 import random
 import re
@@ -18,9 +18,10 @@ from PIL import Image, ImageDraw, ImageFont
 
 from build_assets import rect, text
 
-ROOT = Path(__file__).parent
-OUT = ROOT / "assets" / "terminal"
-FONT_PATH = ROOT / "tools" / "fonts" / "MartianMono.ttf"
+HERE = Path(__file__).parent
+ROOT = HERE.parent
+OUT = ROOT / "readmes" / "terminal" / "assets"
+FONT_PATH = HERE / "fonts" / "MartianMono.ttf"
 
 # site tokens: --fg, --fg-hi, --fg-dim (55% amber over black) and the projects terminal greys
 TERM = {
@@ -204,7 +205,7 @@ def svg(name, w, h, body, title, style="", bg="black"):
 
 # only what defines the work; the full list lives in the README's expandable section
 STACK = [["python", "rust", "go"], ["langgraph", "pytorch"], ["fastapi", "postgres", "docker"]]
-ICON_DIR = ROOT / "tools" / "icons"  # Simple Icons 16.36.0 (CC0), filled 24x24 marks
+ICON_DIR = HERE / "icons"  # Simple Icons 16.36.0 (CC0), filled 24x24 marks
 ICON_FILE = {"postgres": "postgresql"}
 TILE, TILE_GAP, GROUP_GAP = 40, 6, 16  # tiles match the 40px link plaques above them
 
