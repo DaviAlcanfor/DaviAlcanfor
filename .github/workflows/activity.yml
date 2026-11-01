@@ -28,30 +28,12 @@ jobs:
           path: dist/top-langs.svg
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # amber terminal versions for README.md (the ones above serve README.darksouls.md)
-      - name: Stats card (terminal)
-        uses: stats-organization/github-readme-stats-action@v2
-        with:
-          card: stats
-          options: username=${{ github.repository_owner }}&show_icons=true&bg_color=0B0B0B&title_color=FFB627&text_color=D8D2C4&icon_color=FFB627&ring_color=FFB627&border_color=2A2A2A&border_radius=8
-          path: dist/stats-terminal.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Top languages card (terminal)
-        uses: stats-organization/github-readme-stats-action@v2
-        with:
-          card: top-langs
-          options: username=${{ github.repository_owner }}&layout=compact&langs_count=6&bg_color=0B0B0B&title_color=FFB627&text_color=D8D2C4&border_color=2A2A2A&border_radius=8
-          path: dist/top-langs-terminal.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Contribution snakes (ember and amber palettes)
+      - name: Contribution snake (ember palette)
         uses: Platane/snk/svg-only@v3
         with:
           github_user_name: ${{ github.repository_owner }}
           outputs: |
             dist/snake-dark.svg?palette=github-dark&color_snake=%23D8CBB0&color_dots=%231A1412,%236E1414,%23A3241C,%23B08A3E,%23E0B860
-            dist/snake-terminal.svg?palette=github-dark&color_snake=%23FFD27A&color_dots=%23151515,%234D370C,%238C6415,%23FFB627,%23FFD27A
 
       - name: Publish to output branch
         uses: crazy-max/ghaction-github-pages@v4
