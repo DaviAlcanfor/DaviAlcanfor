@@ -13,21 +13,19 @@ colors:
   label: "#777777"
   dim: "#A39D90"
   ink: "#D8D2C4"
-  amber_low: "#4D370C"
   amber_dim: "#8C6415"
   amber: "#FFB627"
   amber_hi: "#FFD27A"
 typography:
   body: { fontFamily: "Martian Mono 400 (OFL), as paths", fontSize: "14px", lineHeight: "26px" }
-  heading: { fontFamily: "Martian Mono 600 (OFL), as paths", fontSize: "18px" }
   chrome: { fontFamily: "Martian Mono 400 (OFL), as paths", fontSize: "11-13px" }
+  tile: { fontFamily: "Martian Mono 400 (OFL), as paths", fontSize: "12px" }
 components:
   marquee:  { file: "assets/terminal/marquee.svg", size: "840x40", width: "100%" }
   cover:    { file: "assets/terminal/cover.gif", size: "840x300", width: "100%" }
   link:     { file: "assets/terminal/link-*.svg", height: "40px" }
-  window:   { file: "assets/terminal/{whoami,stack,projects,offhours,footer}.svg", width: "720px" }
-  project:  { file: "assets/terminal/project-*.svg", size: "480x40" }
-  prompt:   { file: "assets/terminal/prompt-activity.svg", size: "720x36" }
+  window:   { file: "assets/terminal/{stack,offhours}.svg", width: "720px" }
+  tile:     { size: "124x70", gap: "10px", icon: "26px" }
 ---
 
 # Design system: terminal
@@ -41,17 +39,16 @@ version, kept in reserve. This one follows [alcanfor.vercel.app](https://alcanfo
 - `python build_terminal.py` regenerates everything in `assets/terminal/`, deterministically.
   It reuses the path-text primitives from `build_assets.py` (the dark-souls builder).
 - Tokens are copied from the site: `--fg`, `--fg-hi` and `--fg-dim` in `global.css`, and the
-  greys of the projects terminal in `Terminal.astro`. `amber_low` is the only new one: amber at
-  30% over black, derived the same way as `--fg-dim`, for the lowest contribution level.
-- Content is copied from `src/data/site.ts`: roles, bio, marquee, playlist and project
-  descriptions. When the site changes, update the lists at the top of each builder.
+  greys of the projects terminal in `Terminal.astro`.
+- Content is copied from `src/data/site.ts`: roles, bio, marquee and playlist. When the site changes, update the lists at the top of each builder.
 - No photo. The cover is drawn entirely in code.
 
 ## Metaphor
 
-The README is one terminal session. Every section is a command at the `davi@github:~$` prompt:
-`whoami`, `cat stack.toml`, `ls projects/` with `cat projects/*/README`, `ls ~/off-hours/`,
-`now-playing --shuffle`, `git log --graph`, and finally `exit`.
+Below the marquee, the cover and the links, the README is a terminal session. Every section is a
+command at the `davi@github:~$` prompt: `ls --icons ~/stack/`, then `ls ~/off-hours/` and
+`now-playing --shuffle`. It stays short on purpose: who Davi is already lives in the marquee,
+the cover and the site, so the README doesn't repeat it.
 
 ## Components
 
@@ -70,8 +67,13 @@ The README is one terminal session. Every section is a command at the `davi@gith
   - Commands type in once on load, as a window-colored cover slides off one character per step.
   - Output lines fade in 70 ms apart.
   - A blinking amber block caret waits at the end.
-- **Project heading.** `── name ─────`, as the site's `h2::after` draws it. Below it, the
-  README carries native text: the description, then `stack` and `repo` (and `demo`).
+- **Stack tiles.** `ls --icons` output: a `# group` comment in `muted`, then a row of tiles.
+  - Tiles: `bar` fill, `border` outline, 6 px radius, a 26 px amber mark and a lowercase label.
+  - Marks: Simple Icons 16.36.0 (CC0), vendored in `tools/icons/`, filled in amber.
+  - Prophet, LightGBM and XGBoost have no Simple Icon, so they get line icons: a forecast
+    trend, and a tree grown leaf-wise (LightGBM) or level-wise (XGBoost), the way each
+    library grows its trees.
+  - Each tile fades in 60 ms after the one before it.
 - **Now playing.** Four equalizer bars and the site's playlist, one track every 3 s.
 
 ## Rules
@@ -84,16 +86,9 @@ The README is one terminal session. Every section is a command at the `davi@gith
    is shown by default. Renderers that skip CSS animation (resvg, some apps) still show the
    whole session. `prefers-reduced-motion` turns the motion off.
 4. **Width.** Windows are 720 px with 63 characters per line at most. They shrink to about 7 px
-   text on phones, so every window has an alt text that repeats its content. Project
-   descriptions are native Markdown.
+   text on phones, so every window has an alt text that repeats its content.
 5. **Accessibility.** Each SVG carries `<title>` and `role="img"`. Animated text is also in
    the alt text.
-
-## External cards
-
-`.github/workflows/activity.yml` publishes `stats-terminal.svg`, `top-langs-terminal.svg` and
-`snake-terminal.svg` to the `output` branch with these tokens. It publishes the dark-souls
-cards beside them, so `README.darksouls.md` keeps working.
 
 ## Previews
 
