@@ -1,0 +1,49 @@
+name: activity
+
+# Builds the Activity section into the `output` branch: stats and top-langs cards (the public
+# github-readme-stats instance answers 503, so the cards are rendered here) and the contribution snake.
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+env:
+  # palette tokens from tools/cover_procedural.py
+  CARD_COLORS: hide_border=true&bg_color=0E0B0A&title_color=D8CBB0&text_color=8C7F68&icon_color=A3241C&ring_color=B08A3E
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: stats
+          options: username=${{ github.repository_owner }}&show_icons=true&${{ env.CARD_COLORS }}
+          path: dist/stats.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: top-langs
+          options: username=${{ github.repository_owner }}&layout=compact&langs_count=6&${{ env.CARD_COLORS }}
+          path: dist/top-langs.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: Platane/snk@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          # empty cells in shadow, then stone → stone_lit → blood → crimson
+          outputs: |
+            dist/snake-dark.svg?palette=github-dark&color_snake=#A3241C&color_dots=#1A1412,#3B312D,#5A4A40,#6E1414,#A3241C
+
+      - uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
