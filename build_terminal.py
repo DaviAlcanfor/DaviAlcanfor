@@ -276,23 +276,29 @@ def window(name, title, lines, alt):
 
 
 STACK = [
-    ("languages", ["python", "rust", "go"]),
-    ("ai & ml", ["langgraph", "langchain", "prophet", "lightgbm", "xgboost"]),
-    ("infra", ["fastapi", "docker", "postgres", "redis", "qdrant"]),
+    ("languages", ["python", "rust", "go", "c", "java", "typescript"]),
+    ("ai & ml", ["langgraph", "langchain", "pytorch", "sklearn", "prophet", "lightgbm", "xgboost"]),
+    ("web", ["fastapi", "flask", "spring", "react"]),
+    ("data", ["postgres", "mongodb", "redis", "qdrant"]),
+    ("security", ["kali", "nmap", "burp suite"]),
+    ("tools", ["docker", "git", "linux", "vim"]),
 ]
 ICON_DIR = ROOT / "tools" / "icons"  # Simple Icons 16.36.0 (CC0), filled 24x24 marks
-ICON_FILE = {"postgres": "postgresql"}
-# No Simple Icon exists for these, so they get line icons: a forecast trend for Prophet, and a tree
-# for each booster, grown leaf-wise for LightGBM and level-wise for XGBoost, as they grow theirs
+ICON_FILE = {"postgres": "postgresql", "java": "openjdk", "sklearn": "scikitlearn", "kali": "kalilinux",
+             "burp suite": "burpsuite"}
+# No Simple Icon exists for these, so they get line icons: a forecast trend for Prophet, a tree for
+# each booster (grown leaf-wise for LightGBM, level-wise for XGBoost, as they grow theirs) and a
+# radar sweep for Nmap
 LINE_ICONS = {
     "prophet": "M2 19l6-7 4 4 9-11M15 5h6v6",
     "lightgbm": "M12 2v4M12 6L6 11M12 6l6 5M6 11l-3 5M6 11l3 5M3 16l-1.5 6M3 16l1.5 6",
     "xgboost": "M12 2v4M12 6L6 11M12 6l6 5M6 11l-3 6M6 11l3 6M18 11l-3 6M18 11l3 6",
+    "nmap": "M21 12a9 9 0 1 1-9-9M16.5 12A4.5 4.5 0 1 1 12 7.5M12 12l7-7",
 }
-TILE_W, TILE_H, TILE_GAP = 124, 70, 10
+TILE_W, TILE_H, TILE_GAP = 88, 62, 8  # 7 tiles fill the 664px between the window's paddings
 
 
-def icon(name, cx, top, size=26):
+def icon(name, cx, top, size=24):
     """The tech's mark in amber, centered on cx."""
     place = f'transform="translate({cx - size / 2:.2f} {top}) scale({size / 24:.4f})"'
     if name in LINE_ICONS:
@@ -302,28 +308,29 @@ def icon(name, cx, top, size=26):
     return f'<path {place} d="{d}" fill="{T["amber"]}"/>'
 
 
+def row_x(n):
+    """Left edge of a centered row of n tiles."""
+    return (PAGE_W - n * TILE_W - (n - 1) * TILE_GAP) / 2
+
+
+def group_label(group):
+    """The "# group" comment, centered over its tile row."""
+    return lambda y, delay: text("# " + group, MONO, 12, PAGE_W / 2, y, T["muted"], "middle")
+
+
 def tiles(items):
-    """A row of tiles, each fading in a beat after the previous one."""
+    """A centered row of tiles, each fading in a beat after the previous one."""
     def draw(y, delay):
-        top, out = y - 8, ""
+        top, out = y - 12, ""
         for k, name in enumerate(items):
-            x = 28 + k * (TILE_W + TILE_GAP)
-            out += (f'<g class="a" style="animation-delay:{delay + k * 0.06:.2f}s">'
-                    f'<rect x="{x + .5}" y="{top + .5}" width="{TILE_W - 1}" height="{TILE_H - 1}" rx="6" '
+            x = row_x(len(items)) + k * (TILE_W + TILE_GAP)
+            out += (f'<g class="a" style="animation-delay:{delay + k * 0.05:.2f}s">'
+                    f'<rect x="{x + .5:.2f}" y="{top + .5}" width="{TILE_W - 1}" height="{TILE_H - 1}" rx="6" '
                     f'fill="{T["bar"]}" stroke="{T["border"]}"/>'
-                    + icon(name, x + TILE_W / 2, top + 12)
-                    + text(name, MONO, 12, x + TILE_W / 2, top + 58, T["ink"], "middle") + "</g>")
+                    + icon(name, x + TILE_W / 2, top + 11)
+                    + text(name, MONO, 10, x + TILE_W / 2, top + 52, T["ink"], "middle") + "</g>")
         return out
     return draw
-
-
-def build_stack():
-    rows = [("$", "ls --icons ~/stack/")]
-    for k, (group, items) in enumerate(STACK):
-        # a tile row is ~3 lines tall: draw it on the first line, then reserve two more
-        rows += [[]] * (k > 0) + [[("# " + group, "muted")], tiles(items), [], []]
-    window("stack.svg", "davi@github: ~/stack", rows + [[]],
-           "Terminal: ls --icons ~/stack. " + ". ".join(f"{g}: {', '.join(i)}" for g, i in STACK) + ".")
 
 
 TRACKS = [  # TRACKS in the site's data/site.ts
@@ -352,8 +359,14 @@ def now_playing(y, delay):
         "@media (prefers-reduced-motion:reduce){.tr,.eq{animation:none}}</style>"
 
 
-def build_offhours():
-    window("offhours.svg", "davi@github: ~", [
+def build_terminal():
+    """One session: the stack as icon tiles, then what happens off hours."""
+    rows = [("$", "ls --icons ~/stack/")]
+    for group, items in STACK:
+        # a tile row is ~3 lines tall: draw it on the second line, then reserve two more
+        rows += [group_label(group), tiles(items), [], []]
+    rows += [
+        [],
         ("$", "ls ~/off-hours/"),
         [("geoguessr/", "amber"), ("   ", "ink"), ("valorant/", "amber"), ("   ", "ink"),
          ("rainbow-six-siege/", "amber"), ("   ", "ink"), ("video-editing/", "amber")],
@@ -361,8 +374,11 @@ def build_offhours():
         ("$", "now-playing --shuffle"),
         now_playing,
         [("a very eclectic playlist :)", "muted")],
-    ], "Terminal: ls off-hours lists GeoGuessr, Valorant, Rainbow Six Siege and video editing. "
-       "now-playing cycles through a playlist: " + "; ".join(f"{a} by {b}" for a, b in TRACKS) + ".")
+    ]
+    window("terminal.svg", "davi@github: ~", rows,
+           "Terminal: ls --icons ~/stack. " + ". ".join(f"{g}: {', '.join(i)}" for g, i in STACK)
+           + ". ls off-hours lists GeoGuessr, Valorant, Rainbow Six Siege and video editing. "
+           "now-playing cycles through a playlist: " + "; ".join(f"{a} by {b}" for a, b in TRACKS) + ".")
 
 
 MARQUEE = [  # MARQUEE in the site's data/site.ts
@@ -415,8 +431,7 @@ def main():
     OUT.mkdir(parents=True, exist_ok=True)
     build_marquee()
     build_links()
-    build_stack()
-    build_offhours()
+    build_terminal()
     build_cover()
     for p in sorted(OUT.iterdir()):
         print(f"{p.name:28} {p.stat().st_size / 1024:8.1f} KB")
