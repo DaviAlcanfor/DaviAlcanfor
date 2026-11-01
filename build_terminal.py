@@ -27,14 +27,9 @@ TERM = {
     "black": "#000000",
     "window": "#0B0B0B",
     "bar": "#151515",
-    "rule": "#222222",
     "border": "#2A2A2A",
-    "dot": "#2C2C2C",
-    "faint": "#555555",
     "muted": "#666666",
-    "label": "#777777",
     "dim": "#A39D90",
-    "ink": "#D8D2C4",
     "amber_dim": "#8C6415",
     "amber": "#FFB627",
     "amber_hi": "#FFD27A",
@@ -187,33 +182,13 @@ def build_cover():
 
 # ── svg primitives ───────────────────────────────────────────────────────
 
-PAGE_W = 720  # narrower than the page: phones scale it down, and 14px must stay legible
-SIZE, LH = 14, 26
-PROMPT = "davi@github:~$"
+PAGE_W = 720
 UPEM = MONO["head"].unitsPerEm
 ADV = MONO["hmtx"]["M"][0] / UPEM  # monospace advance per 1px of font size
 
-MOTION_CSS = (
-    "@keyframes in{from{opacity:0}}"
-    "@keyframes blink{50%{opacity:0}}"
-    ".a{animation:in .3s ease-out both}"
-    ".k{animation:blink 1s step-end infinite}"
-    "@media (prefers-reduced-motion:reduce){.a,.k{animation:none}.ty{display:none}}"
-)
 
-
-def cw(size=SIZE):
+def cw(size):
     return ADV * size
-
-
-def segs(parts, x, y, size=SIZE, font=MONO):
-    """[(text, tone), ...] laid out left to right in one monospace run; y is the baseline."""
-    out = []
-    for value, tone in parts:
-        if value.strip():
-            out.append(text(value, font, size, round(x, 2), y, T[tone]))
-        x += len(value) * cw(size)
-    return "".join(out)
 
 
 def svg(name, w, h, body, title, style="", bg="black"):
@@ -222,163 +197,37 @@ def svg(name, w, h, body, title, style="", bg="black"):
     css = f"<style>{style}</style>" if style else ""
     (OUT / name).write_text(
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" {role}>'
-        f"{alt}{css}{rect(0, 0, w, h, T[bg])}{body}</svg>\n", encoding="utf-8")
+        f"{alt}{css}{rect(0, 0, w, h, T[bg]) if bg else ''}{body}</svg>\n", encoding="utf-8")
 
 
-def caret(x, y, size=SIZE):
-    """Blinking block cursor sitting on baseline y."""
-    return f'<rect class="k" x="{x:.2f}" y="{y - size}" width="{cw(size):.2f}" height="{size + 3}" fill="{T["amber"]}"/>'
+# ── stack ────────────────────────────────────────────────────────────────
 
-
-# ── terminal window ──────────────────────────────────────────────────────
-
-def window(name, title, lines, alt):
-    """A projects-terminal window. lines: ("$", command) | [(text, tone), ...] | callable(y, delay).
-
-    Commands type themselves once on load (a window-colored cover slides off in steps), then each
-    output line fades in, like the site. Reduced motion shows the final state.
-    """
-    pad, top = 28, 36 + 30
-    h = top + len(lines) * LH + 24
-    body = (f'<rect x=".5" y=".5" width="{PAGE_W - 1}" height="{h - 1}" rx="8" fill="{T["window"]}" '
-            f'stroke="{T["border"]}"/>'
-            f'<path d="M1 36V9a8 8 0 0 1 8-8h{PAGE_W - 18}a8 8 0 0 1 8 8v27z" fill="{T["bar"]}"/>'
-            + rect(1, 36, PAGE_W - 2, 1, T["rule"])
-            + "".join(f'<circle cx="{20 + i * 18}" cy="18" r="5.5" fill="{T["dot"]}"/>' for i in range(3))
-            + text(title, MONO, 12, PAGE_W / 2, 22, T["label"], "middle")
-            + text("esc", MONO, 11, PAGE_W - 20, 22, T["faint"], "end"))
-    css, t, y = [MOTION_CSS], 0.3, top
-    for i, line in enumerate(lines):
-        if isinstance(line, tuple) and line[0] == "$":
-            cmd = line[1]
-            x0 = pad + (len(PROMPT) + 1) * cw()
-            dur = 0.06 * len(cmd)
-            body += f'<g class="a" style="animation-delay:{t:.2f}s">{segs([(PROMPT, "amber")], pad, y)}</g>'
-            body += segs([(cmd, "ink")], x0, y)
-            # the cover slides right one character per step, revealing the command as if typed.
-            # It rests past the command by default, so renderers that skip CSS animation show the text
-            shift = f"{len(cmd) * cw() + 2:.2f}"
-            css.append(f"@keyframes t{i}{{from{{transform:translateX(0)}}to{{transform:translateX({shift}px)}}}}")
-            body += (f'<rect class="ty" x="{x0:.2f}" y="{y - SIZE - 2}" width="{shift}" height="{SIZE + 8}" '
-                     f'fill="{T["window"]}" transform="translate({shift} 0)" '
-                     f'style="animation:t{i} {dur:.2f}s steps({len(cmd)}) {t + 0.2:.2f}s backwards"/>')
-            t += 0.2 + dur + 0.25
-        elif callable(line):
-            body += f'<g class="a" style="animation-delay:{t:.2f}s">{line(y, t)}</g>'
-            t += 0.07
-        else:
-            body += f'<g class="a" style="animation-delay:{t:.2f}s">{segs(line, pad, y)}</g>'
-            t += 0.07
-        y += LH
-    body += (f'<g class="a" style="animation-delay:{t + 0.2:.2f}s">{segs([(PROMPT, "amber")], pad, y)}'
-             f'{caret(pad + (len(PROMPT) + 1) * cw(), y)}</g>')
-    svg(name, PAGE_W, h, body, alt, "".join(css))
-
-
-STACK = [
-    ("languages", ["python", "rust", "go", "c", "java", "typescript"]),
-    ("ai & ml", ["langgraph", "langchain", "pytorch", "sklearn", "prophet", "lightgbm", "xgboost"]),
-    ("web", ["fastapi", "flask", "spring", "react"]),
-    ("data", ["postgres", "mongodb", "redis", "qdrant"]),
-    ("security", ["kali", "nmap", "burp suite"]),
-    ("tools", ["docker", "git", "linux", "vim"]),
-]
+# only what defines the work; the full list lives in the README's expandable section
+STACK = [["python", "rust", "go"], ["langgraph", "pytorch"], ["fastapi", "postgres", "docker"]]
 ICON_DIR = ROOT / "tools" / "icons"  # Simple Icons 16.36.0 (CC0), filled 24x24 marks
-ICON_FILE = {"postgres": "postgresql", "java": "openjdk", "sklearn": "scikitlearn", "kali": "kalilinux",
-             "burp suite": "burpsuite"}
-# No Simple Icon exists for these, so they get line icons: a forecast trend for Prophet, a tree for
-# each booster (grown leaf-wise for LightGBM, level-wise for XGBoost, as they grow theirs) and a
-# radar sweep for Nmap
-LINE_ICONS = {
-    "prophet": "M2 19l6-7 4 4 9-11M15 5h6v6",
-    "lightgbm": "M12 2v4M12 6L6 11M12 6l6 5M6 11l-3 5M6 11l3 5M3 16l-1.5 6M3 16l1.5 6",
-    "xgboost": "M12 2v4M12 6L6 11M12 6l6 5M6 11l-3 6M6 11l3 6M18 11l-3 6M18 11l3 6",
-    "nmap": "M21 12a9 9 0 1 1-9-9M16.5 12A4.5 4.5 0 1 1 12 7.5M12 12l7-7",
-}
-TILE_W, TILE_H, TILE_GAP = 88, 62, 8  # 7 tiles fill the 664px between the window's paddings
+ICON_FILE = {"postgres": "postgresql"}
+TILE, TILE_GAP, GROUP_GAP = 40, 6, 16  # tiles match the 40px link plaques above them
 
 
-def icon(name, cx, top, size=24):
-    """The tech's mark in amber, centered on cx."""
-    place = f'transform="translate({cx - size / 2:.2f} {top}) scale({size / 24:.4f})"'
-    if name in LINE_ICONS:
-        return (f'<path {place} d="{LINE_ICONS[name]}" fill="none" stroke="{T["amber"]}" stroke-width="2.2" '
-                f'stroke-linecap="round" stroke-linejoin="round"/>')
+def icon(name, cx, cy, size=20):
+    """The tech's mark in amber, centered on (cx, cy)."""
     d = re.search(r' d="([^"]+)"', (ICON_DIR / f"{ICON_FILE.get(name, name)}.svg").read_text()).group(1)
-    return f'<path {place} d="{d}" fill="{T["amber"]}"/>'
+    return (f'<path transform="translate({cx - size / 2:.2f} {cy - size / 2:.2f}) scale({size / 24:.4f})" '
+            f'd="{d}" fill="{T["amber"]}"/>')
 
 
-def row_x(n):
-    """Left edge of a centered row of n tiles."""
-    return (PAGE_W - n * TILE_W - (n - 1) * TILE_GAP) / 2
-
-
-def group_label(group):
-    """The "# group" comment, centered over its tile row."""
-    return lambda y, delay: text("# " + group, MONO, 12, PAGE_W / 2, y, T["muted"], "middle")
-
-
-def tiles(items):
-    """A centered row of tiles, each fading in a beat after the previous one."""
-    def draw(y, delay):
-        top, out = y - 12, ""
-        for k, name in enumerate(items):
-            x = row_x(len(items)) + k * (TILE_W + TILE_GAP)
-            out += (f'<g class="a" style="animation-delay:{delay + k * 0.05:.2f}s">'
-                    f'<rect x="{x + .5:.2f}" y="{top + .5}" width="{TILE_W - 1}" height="{TILE_H - 1}" rx="6" '
-                    f'fill="{T["bar"]}" stroke="{T["border"]}"/>'
-                    + icon(name, x + TILE_W / 2, top + 11)
-                    + text(name, MONO, 10, x + TILE_W / 2, top + 52, T["ink"], "middle") + "</g>")
-        return out
-    return draw
-
-
-TRACKS = [  # TRACKS in the site's data/site.ts
-    ("do ya?", "ericdoa"), ("CLOUDED", "Brent Faiyaz"), ("One Hundred Sleepless Nights", "Pierce The Veil"),
-    ("Juna", "Clairo"), ("Always Do", "Rocco"), ("So Easy To Love You", "Carey Bell"),
-    ("Virtual Insanity", "Jamiroquai"), ("Holy, Holy", "Geordie Greep"),
-]
-TRACK_S = 3
-
-
-def now_playing(y, delay):
-    """Equalizer bars plus the playlist, one track every 3s, looping forever."""
-    pad, n = 28, len(TRACKS)
-    bars = "".join(
-        f'<rect class="eq" x="{pad + i * 5}" y="{y - 12}" width="3" height="12" fill="{T["amber"]}" '
-        f'style="animation-delay:-{i * 0.23:.2f}s"/>' for i in range(4))
-    shown = 100 / n
-    titles = "".join(
-        f'<g class="tr" opacity="{int(k == 0)}" style="animation-delay:{k * TRACK_S - n * TRACK_S:.0f}s">'
-        f'{segs([(title, "ink"), ("  —  ", "muted"), (artist, "dim")], pad + 34, y)}</g>'
-        for k, (title, artist) in enumerate(TRACKS))
-    return bars + titles + f"<style>@keyframes tr{{0%,{shown:.2f}%{{opacity:1}}{shown + 0.01:.2f}%,100%{{opacity:0}}}}" \
-        f".tr{{animation:tr {n * TRACK_S}s step-end infinite}}" \
-        "@keyframes eq{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}" \
-        ".eq{transform-box:fill-box;transform-origin:bottom;animation:eq .9s ease-in-out infinite}" \
-        "@media (prefers-reduced-motion:reduce){.tr,.eq{animation:none}}</style>"
-
-
-def build_terminal():
-    """One session: the stack as icon tiles, then what happens off hours."""
-    rows = [("$", "ls --icons ~/stack/")]
-    for group, items in STACK:
-        # a tile row is ~3 lines tall: draw it on the second line, then reserve two more
-        rows += [group_label(group), tiles(items), [], []]
-    rows += [
-        [],
-        ("$", "ls ~/off-hours/"),
-        [("geoguessr/", "amber"), ("   ", "ink"), ("valorant/", "amber"), ("   ", "ink"),
-         ("rainbow-six-siege/", "amber"), ("   ", "ink"), ("video-editing/", "amber")],
-        [],
-        ("$", "now-playing --shuffle"),
-        now_playing,
-        [("a very eclectic playlist :)", "muted")],
-    ]
-    window("terminal.svg", "davi@github: ~", rows,
-           "Terminal: ls --icons ~/stack. " + ". ".join(f"{g}: {', '.join(i)}" for g, i in STACK)
-           + ". ls off-hours lists GeoGuessr, Valorant, Rainbow Six Siege and video editing. "
-           "now-playing cycles through a playlist: " + "; ".join(f"{a} by {b}" for a, b in TRACKS) + ".")
+def build_stack():
+    """One row of icon-only tiles, grouped: languages, ai & ml, serving and data."""
+    body, x = "", 0
+    for k, group in enumerate(STACK):
+        x += GROUP_GAP * (k > 0)
+        for name in group:
+            body += (f'<rect x="{x + .5}" y=".5" width="{TILE - 1}" height="{TILE - 1}" rx="6" '
+                     f'fill="{T["window"]}" stroke="{T["border"]}"/>' + icon(name, x + TILE / 2, TILE / 2))
+            x += TILE + TILE_GAP
+    names = [n for group in STACK for n in group]
+    # no backdrop: the tiles carry their own fill, and a black band would show in the group gaps
+    svg("stack.svg", x - TILE_GAP, TILE, body, "Stack: " + ", ".join(names), bg=None)
 
 
 MARQUEE = [  # MARQUEE in the site's data/site.ts
@@ -431,7 +280,7 @@ def main():
     OUT.mkdir(parents=True, exist_ok=True)
     build_marquee()
     build_links()
-    build_terminal()
+    build_stack()
     build_cover()
     for p in sorted(OUT.iterdir()):
         print(f"{p.name:28} {p.stat().st_size / 1024:8.1f} KB")
