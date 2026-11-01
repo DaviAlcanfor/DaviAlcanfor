@@ -185,25 +185,6 @@ def build_dividers():
     svg("divider-thorn.svg", w, h, lines + sprite(THORNS, THORN_PAL, cx - 19, 14, 2), "")
 
 
-HEADERS = [("relics", "RELICS"), ("inventory", "INVENTORY"), ("beyond", "BEYOND THE CODE"),
-           ("activity", "ACTIVITY")]
-
-
-def build_headers():
-    """Section title in serif, followed by a pixel bar that fades from crimson into stone."""
-    w, h = 840, 56
-    for key, label in HEADERS:
-        body = sprite(DROP, {"w": C["crimson"]}, 40, 22, 2)
-        body += text(label, SERIF, 22, 56, 36, C["bone"], tracking=3)
-        x0 = round(56 + text_width(label, SERIF, 22, 3) + 20)
-        for x in range(x0, 800, 8):
-            t = (x - x0) / (800 - x0)
-            tone = C["crimson"] if t < 0.2 else C["blood"] if t < 0.55 else C["stone_dark"]
-            body += rect(x, 28, 6, 4, tone)
-        body += rect(40, 47, 760, 1, C["stone"])
-        svg(f"header-{key}.svg", w, h, body, label.title())
-
-
 def build_intro():
     w, h, cx = 640, 176, 320  # narrower than the page so text stays legible when scaled on phones
     frame = stepped(20, 8, 600, 160, C["gold"], 4) + stepped(22, 10, 596, 156, C["void"], 4)
@@ -377,7 +358,6 @@ def build_footer():
 def main():
     OUT.mkdir(exist_ok=True)
     build_dividers()
-    build_headers()
     build_intro()
     build_links()
     build_badges()
