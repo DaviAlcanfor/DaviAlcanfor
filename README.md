@@ -9,6 +9,4 @@
 
 <br /><br />
 
-<img src="./assets/terminal/stack.svg" alt="Terminal: ls --icons ~/stack. languages: python, rust, go. ai & ml: langgraph, langchain, prophet, lightgbm, xgboost. infra: fastapi, docker, postgres, redis, qdrant." width="720" />
-
-<a href="https://alcanfor.vercel.app"><img src="./assets/terminal/offhours.svg" alt="Terminal: ls off-hours lists GeoGuessr, Valorant, Rainbow Six Siege and video editing. now-playing shuffles through a very eclectic playlist, the same one that plays on alcanfor.vercel.app." width="720" /></a>
+<img src="./assets/terminal/terminal.svg" alt="Terminal: ls --icons ~/stack. languages: python, rust, go, c, java, typescript. ai & ml: langgraph, langchain, pytorch, scikit-learn, prophet, lightgbm, xgboost. web: fastapi, flask, spring, react. data: postgres, mongodb, redis, qdrant. security: kali, nmap, burp suite. tools: docker, git, linux, vim. ls off-hours lists GeoGuessr, Valorant, Rainbow Six Siege and video editing. now-playing shuffles through a very eclectic playlist, the same one that plays on alcanfor.vercel.app." width="720" />
